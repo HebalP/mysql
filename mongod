@@ -83,4 +83,35 @@ dbms> db.parentdetails.drop()
 true
 dbms> show collections
 
-dbms>
+
+
+... {
+... sname:"ram",
+... saddr:"kottayam",marks:"40",grade:"A"
+... }
+... )
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('65f80905ba9a44a08b8bf203') }
+}
+dbms> db.marklist.find()
+[
+  {
+    _id: ObjectId('65f80905ba9a44a08b8bf203'),
+    sname: 'ram',
+    saddr: 'kottayam',
+    marks: '40',
+    grade: 'A'
+  }
+]
+dbms> db.marklist.find().pretty()
+[
+  {
+    _id: ObjectId('65f80905ba9a44a08b8bf203'),
+    sname: 'ram',
+    saddr: 'kottayam',
+    marks: '40',
+    grade: 'A'
+  }
+]
