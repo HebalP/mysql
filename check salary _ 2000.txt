@@ -1,0 +1,19 @@
+CREATE OR REPLACE TRIGGER Checksalary
+   BEFORE
+   INSERT OR UPDATE ON employee
+  FOR EACH ROW
+   BEGIN
+   IF :new.salary>3000 THEN
+   raise_application_error(-20001, 'salary should not be greater than 2000');
+   END IF;
+   END;
+    /
+Trigger created.
+update employee set salary=4000 where employee_no=2;
+update employee set salary=4000 where employee_no=2
+  *ERROR at line 1:
+ORA-20001: Age should not be greater than 30
+ORA-06512: at "SYSTEM.CHECKAGE", line 3
+ORA-04088: error during execution of trigger 'SYSTEM.CHECKAGE'
+ update employee set salary=2600 where employee_no=2;
+1 row updated.
