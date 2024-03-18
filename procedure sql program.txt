@@ -1,0 +1,72 @@
+eate table dept(eid int primary key,ename varchar(30),psal int,ploc varchar(20));
+SQL> CREATE OR REPLACE PROCEDURE addemp
+  2  (depid IN dept.eid%TYPE,
+  3  depname IN dept.ename%TYPE,
+  4  depsal IN dept.psal%TYPE,
+  5  deploc IN dept.ploc%TYPE)
+  6  IS
+  7  BEGIN
+  8  INSERT INTO dept Values(depid,depname,depsal,deploc);
+  9  dbms_output.Put_line('dpmt added');
+ 10  end;
+ 11  /
+
+Procedure created.
+
+SQL> set serveroutput on
+SQL> execute addemp(3,'moye',4000,'kl');
+dpmt added
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from dept;
+
+       EID ENAME                                PSAL
+---------- ------------------------------ ----------
+PLOC
+------------------------------
+         2 ashu                                 4000
+klm
+
+         3 moye                                 4000
+kl
+
+
+SQL> DECLARE
+  2      a number;
+  3      b number;
+  4      c number;
+  5   PROCEDURE findMin(x IN number, y IN number, z OUT number) IS
+  6   BEGIN
+  7       IF x < y THEN
+  8         z:= x;
+  9      ELSE
+ 10          z:= y;
+ 11      END IF;
+ 12    END;
+ 13    BEGIN
+ 14       a:= 31;
+ 15       b:= 56;
+ 16       findMin(a, b, c);
+ 17      dbms_output.put_line(' Minimum of (31,56: ' || c);
+ 18    END;
+ 19   /
+Minimum of (31,56: 31
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2       a number;
+  3    PROCEDURE squareNum(x IN OUT number) IS
+  4    BEGIN
+  5      x := x * x;
+  6    END;
+  7    BEGIN
+  8       a:= 21;
+  9       squareNum(a);
+ 10       dbms_output.put_line(' Square of (21): ' || a);
+ 11    END;
+ 12    /
+Square of (21): 441
+
+PL/SQL procedure successfully completed.
