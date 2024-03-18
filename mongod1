@@ -1,0 +1,166 @@
+test> use university
+switched to db university
+university> db.createCollection("employe")
+{ ok: 1 }
+university>  db.createCollection("department")
+{ ok: 1 }
+university>  db.employe.insertOne({"empno":1,"name":"john","empid":"101"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65f802e144721bae918bf202')
+}
+university> db.employe.insertOne({"empno":2,"name":"hebal","empid":"102"}
+... db.employe.insertOne({"empno":2,"name":"hebal","empid":"102"})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (2:0)
+
+  1 | db.employe.insertOne({"empno":2,"name":"hebal","empid":"102"}
+> 2 | db.employe.insertOne({"empno":2,"name":"hebal","empid":"102"})
+    | ^
+  3 |
+
+university> db.employe.insertOne({"empno":2,"name":"hebal","empid":"102"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65f8033844721bae918bf203')
+}
+university> db.employe.insertOne({"empno":3,"name":"krishna","empid":"103"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65f8035544721bae918bf204')
+}
+university>  show employe
+MongoshInvalidInputError: [COMMON-10001] 'employe' is not a valid argument for "show".
+university>  show collections
+department
+employe
+university> db.employe.find().pretty()
+[
+  {
+    _id: ObjectId('65f802e144721bae918bf202'),
+    empno: 1,
+    name: 'john',
+    empid: '101'
+  },
+  {
+    _id: ObjectId('65f8033844721bae918bf203'),
+    empno: 2,
+    name: 'hebal',
+    empid: '102'
+  },
+  {
+    _id: ObjectId('65f8035544721bae918bf204'),
+    empno: 3,
+    name: 'krishna',
+    empid: '103'
+  }
+]
+university>  db.department.insertOne({"depno":1,"name":"hebal","depid":"101"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65f803c244721bae918bf205')
+}
+university>  db.department.insertOne({"depno":2,"name":"mahesh","depid":"201"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65f803dc44721bae918bf206')
+}
+university> db.department.insertOne({"depno":2,"name":"nandhu","depid":"202"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65f803fa44721bae918bf207')
+}
+university>  db.department.find().pretty()
+[
+  {
+    _id: ObjectId('65f803c244721bae918bf205'),
+    depno: 1,
+    name: 'hebal',
+    depid: '101'
+  },
+  {
+    _id: ObjectId('65f803dc44721bae918bf206'),
+    depno: 2,
+    name: 'mahesh',
+    depid: '201'
+  },
+  {
+    _id: ObjectId('65f803fa44721bae918bf207'),
+    depno: 2,
+    name: 'nandhu',
+    depid: '202'
+  }
+]
+university> db.employe.update({"name":"john"},{$set:{"name":"ek"}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+university>
+ReferenceError: z is not defined
+university> db.employe.insertOne({"empno":3,"name":"krishna","empid":"103","salary":"40000" })
+{ insertedId: null,
+  acknowledged: true,
+  insertedId: ObjectId('65f804ec44721bae918bf208')
+} upsertedCount: 0
+university>  db.employe.insertOne({"empno":1,"name":"john","empid":"101","salary":"30000"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65f8052f44721bae918bf209')
+}
+university> db.employe.insertOne({"empno":2,"name":"hebal","empid":"102","salary":"50000"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('65f8056e44721bae918bf20a')
+}
+university> db.employe.find().pretty()
+[
+  {
+    _id: ObjectId('65f802e144721bae918bf202'),
+    empno: 1,
+    name: 'ek',
+    empid: '101'
+  },
+  {
+    _id: ObjectId('65f8033844721bae918bf203'),
+    empno: 2,
+    name: 'hebal',
+    empid: '102'
+  },
+  {
+    _id: ObjectId('65f8035544721bae918bf204'),
+    empno: 3,
+    name: 'krishna',
+    empid: '103'
+  },
+  {
+    _id: ObjectId('65f804ec44721bae918bf208'),
+    empno: 3,
+    name: 'krishna',
+    empid: '103',
+    salary: '40000'
+  },
+  {
+    _id: ObjectId('65f8052f44721bae918bf209'),
+    empno: 1,
+    name: 'john',
+    empid: '101',
+    salary: '30000'
+  },
+  {
+    _id: ObjectId('65f8056e44721bae918bf20a'),
+    empno: 2,
+    name: 'hebal',
+    empid: '102',
+    salary: '50000'
+  }
+]
+university> db.department.drop()
+true
+university>  show collections
+employe
+university>
